@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MobigicTest VaibhavKolte</string>
+    <string name="latter">A</string>
+    <string name="create_grid">Create Grid</string>
+    <string name="search_text_in_grid">Search text in Grid</string>
+    <string name="not_found">Not found.</string>
+    <string name="found_in_diagonal">Found in diagonal.</string>
+    <string name="found_top_to_bottom">Found top to bottom.</string>
+    <string name="found_left_to_right">Found left to right.</string>
+</resources>
