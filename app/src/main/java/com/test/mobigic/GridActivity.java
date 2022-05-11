@@ -32,7 +32,6 @@ public class GridActivity extends AppCompatActivity {
     ArrayList<GridModel> gridModelArrayList;
     ArrayList<Integer> charPos;
 
-    GridViewAAdapter gridViewAAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,6 @@ public class GridActivity extends AppCompatActivity {
             }
             adapter = new GridAdapter(this, gridModelArrayList);
 
-//            gridViewAAdapter = new GridViewAAdapter(context,gridModelArrayList);
             gridView.setAdapter(adapter);
 
 
@@ -131,7 +129,6 @@ public class GridActivity extends AppCompatActivity {
                                     break;
                                 }
                             }
-//                            if (letters.length > j) found = false;
                         }
                         if (found && letters.length == letterCounter) {
                             break;
@@ -191,7 +188,6 @@ public class GridActivity extends AppCompatActivity {
                                     found = false;
                                 }
                             }
-//                            if (letters.length > j) found = false;
                             counter = counter + col;
 
                         }
@@ -250,7 +246,6 @@ public class GridActivity extends AppCompatActivity {
 
                             counter = counter +col +1;
                         }
-//                        if (letters.length > j) found = false;
                     }
                 }
                 if(found && letters.length == letterCounter){
