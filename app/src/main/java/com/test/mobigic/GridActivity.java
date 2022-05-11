@@ -111,7 +111,17 @@ public class GridActivity extends AppCompatActivity {
                                     if (!gridModelArrayList.get(counter).getValue().equalsIgnoreCase(String.valueOf(letters[letterCounter]))) {
                                         found = false;
                                         letterCounter = 0;
+                                        charPos.clear();
 
+                                        if (!gridModelArrayList.get(counter).getValue().equalsIgnoreCase(String.valueOf(letters[letterCounter]))) {
+                                            found = false;
+                                            letterCounter = 0;
+                                            charPos.clear();
+                                        } else {
+                                            found = true;
+                                            charPos.add(counter);
+                                            letterCounter++;
+                                        }
                                     } else {
                                         found = true;
                                         charPos.add(counter);
@@ -134,13 +144,12 @@ public class GridActivity extends AppCompatActivity {
                     if (found && letters.length == letterCounter) {
                         Log.e(TAG, "findLeftToRight: Text is found");
                         tvResult.setText(R.string.found_left_to_right);
-                        updateAdapter = new GridAdapter(context,gridModelArrayList,charPos);
+                        updateAdapter = new GridAdapter(context, gridModelArrayList, charPos);
                         gridView.setAdapter(updateAdapter);
                     } else {
                         findTopToBottom();
                     }
-                }
-                else{
+                } else {
                     findTopToBottom();
                 }
             }
@@ -175,6 +184,16 @@ public class GridActivity extends AppCompatActivity {
                                     if (!gridModelArrayList.get(counter).getValue().equalsIgnoreCase(String.valueOf(letters[letterCounter]))) {
                                         found = false;
                                         letterCounter = 0;
+                                        charPos.clear();
+                                        if (!gridModelArrayList.get(counter).getValue().equalsIgnoreCase(String.valueOf(letters[letterCounter]))) {
+                                            found = false;
+                                            letterCounter = 0;
+                                            charPos.clear();
+                                        } else {
+                                            found = true;
+                                            charPos.add(counter);
+                                            letterCounter++;
+                                        }
                                     } else {
                                         found = true;
                                         charPos.add(counter);
@@ -195,14 +214,12 @@ public class GridActivity extends AppCompatActivity {
                     if (found && letters.length == letterCounter) {
                         Log.e(TAG, "findTopToBottom: Text is found");
                         tvResult.setText(R.string.found_top_to_bottom);
-                        updateAdapter = new GridAdapter(context,gridModelArrayList,charPos);
+                        updateAdapter = new GridAdapter(context, gridModelArrayList, charPos);
                         gridView.setAdapter(updateAdapter);
                     } else {
                         findDiagonal();
                     }
-                }
-                else
-                {
+                } else {
                     findDiagonal();
                 }
             }
@@ -211,6 +228,7 @@ public class GridActivity extends AppCompatActivity {
             Log.e(TAG, "findTopToBottom: Exception : " + e.getMessage());
         }
     }
+
     private void findDiagonal() {
         try {
             int counter = 0;
@@ -218,36 +236,44 @@ public class GridActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty(searchString)) {
 
                 char[] letters = searchString.toCharArray();
-                for(int i =0 ;i<row;i++){
-                    for(int j=0;j<col;j++){
-                        if(i==j && letters.length > letterCounter){
-                            Log.e(TAG, "findDiagonal: value : "+gridModelArrayList.get(counter).getValue() );
+                for (int i = 0; i < row; i++) {
+                    for (int j = 0; j < col; j++) {
+                        if (i == j && letters.length > letterCounter) {
+                            Log.e(TAG, "findDiagonal: value : " + gridModelArrayList.get(counter).getValue());
                             if (!TextUtils.isEmpty(gridModelArrayList.get(counter).getValue())) {
                                 if (!gridModelArrayList.get(counter).getValue().equalsIgnoreCase(String.valueOf(letters[letterCounter]))) {
                                     found = false;
                                     letterCounter = 0;
+                                    charPos.clear();
+                                    if (!gridModelArrayList.get(counter).getValue().equalsIgnoreCase(String.valueOf(letters[letterCounter]))) {
+                                        found = false;
+                                        letterCounter = 0;
+                                        charPos.clear();
+                                    }else {
+                                        found = true;
+                                        charPos.add(counter);
+                                        letterCounter++;
+                                    }
                                 } else {
                                     found = true;
                                     charPos.add(counter);
                                     letterCounter++;
                                 }
-                            }
-                            else{
+                            } else {
                                 found = false;
                                 letterCounter = 0;
                             }
-                            counter = counter +col +1;
+                            counter = counter + col + 1;
                         }
                     }
                 }
-                if(found && letters.length == letterCounter){
+                if (found && letters.length == letterCounter) {
                     tvResult.setText(R.string.found_in_diagonal);
-                    updateAdapter = new GridAdapter(context,gridModelArrayList,charPos);
+                    updateAdapter = new GridAdapter(context, gridModelArrayList, charPos);
                     gridView.setAdapter(updateAdapter);
-                }
-                else{
+                } else {
                     tvResult.setText(R.string.not_found);
-                    updateAdapter = new GridAdapter(context,gridModelArrayList,null);
+                    updateAdapter = new GridAdapter(context, gridModelArrayList, null);
                     gridView.setAdapter(updateAdapter);
                 }
             }
