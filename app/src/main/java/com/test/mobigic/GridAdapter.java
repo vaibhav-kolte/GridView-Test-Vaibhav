@@ -1,6 +1,8 @@
 package com.test.mobigic;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,15 +15,14 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
 public class GridAdapter extends ArrayAdapter<GridModel> {
     private static final String TAG = "GridAdapter";
-    private static View view;
 
     private ArrayList<Integer> pos;
-    private int Count;
 
 
     public GridAdapter(@NonNull Context context, ArrayList<GridModel> gridModelArrayList) {
@@ -34,6 +35,7 @@ public class GridAdapter extends ArrayAdapter<GridModel> {
 
     }
 
+    @SuppressLint("ResourceAsColor")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -43,7 +45,6 @@ public class GridAdapter extends ArrayAdapter<GridModel> {
             // Layout Inflater inflates each item to be displayed in GridView.
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.card_item, parent, false);
         }
-        view = listItemView;
         GridModel gridModel = getItem(position);
         EditText textView = listItemView.findViewById(R.id.idAlphabet);
 
@@ -52,7 +53,9 @@ public class GridAdapter extends ArrayAdapter<GridModel> {
                 for(int i = 0;i<pos.size();i++){
                     if(pos.get(i) == position){
                         textView.setTypeface(null, Typeface.BOLD);
+                        textView.setTextColor(Color.parseColor("#E80C7505"));
                     }
+
                 }
             }
         } catch (Exception e) {
@@ -79,22 +82,5 @@ public class GridAdapter extends ArrayAdapter<GridModel> {
         Log.e(TAG, "getView: You enter : " +textView.getText() );
         textView.setText(gridModel.getValue());
         return listItemView;
-    }
-
-
-    public void boldCar(ArrayList<Integer> charList,ArrayList<GridModel> gridModelArrayList){
-        try{
-            for(int i = 0;i<charList.size();i++){
-                Log.e(TAG, "boldCar: position : "+charList.get(i) );
-                GridModel gridModel = gridModelArrayList.get(charList.get(i));
-                String value = gridModel.getValue();
-                gridModel.setValue("<b>"+value+"</b>");
-                EditText editText = view.findViewById(R.id.idAlphabet);
-                editText.setTypeface(null, Typeface.BOLD);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, "boldCar: Exception : "+e.getMessage() );
-        }
     }
 }
