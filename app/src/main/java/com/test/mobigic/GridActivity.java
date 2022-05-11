@@ -63,7 +63,6 @@ public class GridActivity extends AppCompatActivity {
                 }
             }
             adapter = new GridAdapter(this, gridModelArrayList);
-
             gridView.setAdapter(adapter);
 
 
@@ -73,7 +72,6 @@ public class GridActivity extends AppCompatActivity {
                     try {
                         searchString = et_SearchText.getText().toString();
                         Log.e(TAG, "onClick: Search text : " + et_SearchText.getText().toString());
-
                         found = true;
                         findLeftToRight();
 
@@ -208,14 +206,11 @@ public class GridActivity extends AppCompatActivity {
                     findDiagonal();
                 }
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "findTopToBottom: Exception : " + e.getMessage());
         }
     }
-
     private void findDiagonal() {
         try {
             int counter = 0;
@@ -241,7 +236,6 @@ public class GridActivity extends AppCompatActivity {
                                 found = false;
                                 letterCounter = 0;
                             }
-
                             counter = counter +col +1;
                         }
                     }
