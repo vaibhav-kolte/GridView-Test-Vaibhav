@@ -112,9 +112,7 @@ public class GridActivity extends AppCompatActivity {
                                 if (!TextUtils.isEmpty(gridModelArrayList.get(counter).getValue())) {
                                     if (!gridModelArrayList.get(counter).getValue().equalsIgnoreCase(String.valueOf(letters[letterCounter]))) {
                                         found = false;
-                                        if(!gridModelArrayList.get(counter).getValue().equalsIgnoreCase(String.valueOf(letters[letterCounter-1]))){
-                                            letterCounter = 0;
-                                        }
+                                        letterCounter = 0;
 
                                     } else {
                                         found = true;
